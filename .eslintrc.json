@@ -1,3 +1,19 @@
 {
-  "extends": "react-app"
+  "extends": ["react-app", "kentcdodds", "kentcdodds/jest", "kentcdodds/react"],
+  "rules": {
+    "require-await": "off",
+    "import/prefer-default-export": "off",
+    "babel/new-cap": "off",
+    "import/no-unassigned-import": "off",
+    "react/prop-types": "off",
+    "no-console": "warn",
+    "no-nested-ternary": "off",
+    "jest/no-disabled-tests": "off",
+    "complexity": ["error", 12],
+    "react/no-did-update-set-state": "off",
+    "react/prefer-stateless-function": "off",
+    "react/no-did-mount-set-state": "off",
+    "prefer-object-spread": "off",
+    "no-useless-catch": "off"
+  }
 }
