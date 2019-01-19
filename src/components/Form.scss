@@ -1,0 +1,32 @@
+.form-wrapper {
+  margin: 50px;
+  .full-input {
+    display: block;
+    padding: 5px;
+    border: 1px solid #a0a0a1;
+    margin: 20px 0;
+    input {
+      outline: none;
+      border: none;
+      display: block;
+      line-height: 1.2%;
+      font-size: 14px;
+    }
+    label {
+      display: block;
+      font-size: 10px;
+      color: #a0a0a1;
+    }
+  }
+  .button {
+    background-color: #fff;
+    border: 1px solid #a0a0a1;
+    border-radius: 3px;
+    color: #a0a0a1;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+  }
+}
