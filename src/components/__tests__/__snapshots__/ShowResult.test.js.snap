@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot 1`] = `
+<div>
+  <div>
+    Submitted Value: 
+    interface
+  </div>
+</div>
+`;
+
+exports[`snapshot empty value 1`] = `
+<div>
+  <div>
+    Submitted Value: 
+  </div>
+</div>
+`;

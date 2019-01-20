@@ -2,33 +2,30 @@
 
 exports[`snapshot 1`] = `
 <div>
-  <div
-    class="App"
+  <form
+    class="form-wrapper"
   >
-    <header
-      class="App-header"
+    <div
+      class="full-input"
     >
-      <img
-        alt="logo"
-        class="App-logo"
-        src="logo.svg"
-      />
-      <p>
-        Edit 
-        <code>
-          src/App.js
-        </code>
-         and save to reload.
-      </p>
-      <a
-        class="App-link"
-        href="https://reactjs.org"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        Learn React
-      </a>
-    </header>
+      <label>
+        Name
+        <input
+          type="text"
+          value=""
+        />
+      </label>
+    </div>
+    <input
+      class="button"
+      disabled=""
+      type="submit"
+      value="Submit"
+    />
+  </form>
+  <div>
+    Submitted Value: 
+    
   </div>
 </div>
 `;

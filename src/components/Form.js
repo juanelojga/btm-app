@@ -4,14 +4,11 @@ import PropTypes from 'prop-types'
 import './Form.scss'
 
 class Form extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {name: ''}
-  }
+  state = {name: ''}
 
   handleChange = e => {
     this.setState({name: e.target.value}, () => {
-      if (this.state.name.length >= this.props.minNumberChars) {
+      if (this.state.name.length >= this.props.minNumberOfChars) {
         this.props.onSearch(this.state.name)
       }
     })
@@ -38,11 +35,11 @@ class Form extends Component {
 }
 
 Form.defaultProps = {
-  minNumberChars: 3,
+  minNumberOfChars: 3,
 }
 
 Form.propTypes = {
-  minNumberChars: PropTypes.number,
+  minNumberOfChars: PropTypes.number,
   onSearch: PropTypes.func,
   onSubmit: PropTypes.func,
 }

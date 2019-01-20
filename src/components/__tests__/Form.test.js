@@ -31,7 +31,7 @@ test('not calls onSearch with a string that has less than 3 characters', () => {
 test('calls onSearch with a string that has 2 characters because the allowed number of chars is 2', () => {
   const word = 'ex'
   const handleSearch = jest.fn()
-  const {getByLabelText} = render(<Form onSearch={handleSearch} minNumberChars={2} />)
+  const {getByLabelText} = render(<Form onSearch={handleSearch} minNumberOfChars={2} />)
 
   const name = getByLabelText(/name/i)
 
