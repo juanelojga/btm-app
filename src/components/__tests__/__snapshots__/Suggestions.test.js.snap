@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot 1`] = `
+<div>
+  <div
+    class="list"
+  >
+    <ul>
+      <li
+        id="1"
+      >
+        Juan Almeida
+      </li>
+      <li
+        id="2"
+      >
+        Patricio Almeida
+      </li>
+    </ul>
+  </div>
+</div>
+`;

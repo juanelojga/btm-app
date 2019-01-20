@@ -16,6 +16,12 @@ exports[`snapshot 1`] = `
         />
       </label>
     </div>
+    <div
+      class="loading"
+    />
+    <div
+      class="list"
+    />
     <input
       class="button"
       disabled=""

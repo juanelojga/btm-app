@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import find from 'lodash/find'
 import debounce from 'lodash/debounce'
+import deburr from 'lodash/deburr'
 
 import * as api from './utils/Api'
 import Suggestions from './components/Suggestions'
@@ -27,7 +28,7 @@ class App extends Component {
 
     this.setState({name: value}, () => {
       if (value.length >= minNumberOfChars) {
-        this.searchDebounced(value)
+        this.searchDebounced(deburr(value))
       }
     })
   }
