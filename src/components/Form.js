@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
+import List from './List'
+
 import './Form.scss'
 
 class Form extends Component {
@@ -28,6 +30,7 @@ class Form extends Component {
             <input type="text" value={this.state.name} onChange={this.handleChange} />
           </label>
         </div>
+        <List items={[{id: 1, name: 'Juan'}, {id: 2, name: 'Rosa'}]} />
         <input type="submit" value="Submit" className="button" disabled={!this.state.name} />
       </form>
     )
