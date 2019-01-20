@@ -1,24 +1,25 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
 import './Form.scss'
 
 class Form extends Component {
   constructor(props) {
     super(props)
-
     this.state = {name: ''}
-
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange(e) {
-    this.setState({name: e.target.value})
+  handleChange = e => {
+    this.setState({name: e.target.value}, () => {
+      if (this.state.name.length >= this.props.minNumberChars) {
+        this.props.onSearch(this.state.name)
+      }
+    })
   }
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault()
-    console.log('handleSubmit')
+    this.props.onSubmit(this.state.name)
   }
 
   render() {
@@ -30,10 +31,20 @@ class Form extends Component {
             <input type="text" value={this.state.name} onChange={this.handleChange} />
           </label>
         </div>
-        <input type="submit" value="Submit" className="button" />
+        <input type="submit" value="Submit" className="button" disabled={!this.state.name} />
       </form>
     )
   }
+}
+
+Form.defaultProps = {
+  minNumberChars: 3,
+}
+
+Form.propTypes = {
+  minNumberChars: PropTypes.number,
+  onSearch: PropTypes.func,
+  onSubmit: PropTypes.func,
 }
 
 export default Form
