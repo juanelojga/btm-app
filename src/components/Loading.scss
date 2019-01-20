@@ -1,0 +1,8 @@
+.loading {
+  width: 30rem;
+  text-align: center;
+  margin: 0;
+  &.show {
+    margin: 1rem;
+  }
+}

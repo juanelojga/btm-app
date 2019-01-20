@@ -4,18 +4,23 @@ import find from 'lodash/find'
 
 import * as api from '../utils/Api'
 import List from './List'
+import Loading from './Loading'
 
 import './Form.scss'
 
 class Form extends Component {
-  state = {name: '', users: []}
+  state = {name: '', users: [], isLoading: false}
 
   handleChange = e => {
-    const {name} = this.state
-    this.setState({name: e.target.value}, () => {
-      if (name.length >= this.props.minNumberOfChars) {
-        this.props.onSearch(name)
-        api.users.get({q: name}).then(users => this.setState({users}))
+    const {minNumberOfChars} = this.props
+    const value = e.target.value
+
+    const hasNameMinLength = value.length >= minNumberOfChars
+    this.setState({name: value, isLoading: hasNameMinLength, users: []}, () => {
+      if (hasNameMinLength) {
+        api.users.get({q: value}).then(users => this.setState({users, isLoading: false}))
+      } else {
+        this.setState({users: []})
       }
     })
   }
@@ -44,6 +49,7 @@ class Form extends Component {
             <input type="text" value={this.state.name} onChange={this.handleChange} />
           </label>
         </div>
+        <Loading isLoading={this.state.isLoading} />
         <List items={this.state.users} onClick={this.handleClick} onClickOutside={this.handleClickOutside} />
         <input type="submit" value="Submit" className="button" disabled={!this.state.name} />
       </form>
@@ -57,7 +63,6 @@ Form.defaultProps = {
 
 Form.propTypes = {
   minNumberOfChars: PropTypes.number,
-  onSearch: PropTypes.func,
   onSubmit: PropTypes.func,
 }
 
