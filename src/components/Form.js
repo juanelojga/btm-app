@@ -1,17 +1,21 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import find from 'lodash/find'
 
+import * as api from '../utils/Api'
 import List from './List'
 
 import './Form.scss'
 
 class Form extends Component {
-  state = {name: ''}
+  state = {name: '', users: []}
 
   handleChange = e => {
+    const {name} = this.state
     this.setState({name: e.target.value}, () => {
-      if (this.state.name.length >= this.props.minNumberOfChars) {
-        this.props.onSearch(this.state.name)
+      if (name.length >= this.props.minNumberOfChars) {
+        this.props.onSearch(name)
+        api.users.get({q: name}).then(users => this.setState({users}))
       }
     })
   }
@@ -19,6 +23,16 @@ class Form extends Component {
   handleSubmit = e => {
     e.preventDefault()
     this.props.onSubmit(this.state.name)
+  }
+
+  handleClick = value => {
+    const {users} = this.state
+    const user = find(users, ['id', value])
+    this.setState({name: user.name, users: []})
+  }
+
+  handleClickOutside = () => {
+    this.setState({users: []})
   }
 
   render() {
@@ -30,7 +44,7 @@ class Form extends Component {
             <input type="text" value={this.state.name} onChange={this.handleChange} />
           </label>
         </div>
-        <List items={[{id: 1, name: 'Juan'}, {id: 2, name: 'Rosa'}]} />
+        <List items={this.state.users} onClick={this.handleClick} onClickOutside={this.handleClickOutside} />
         <input type="submit" value="Submit" className="button" disabled={!this.state.name} />
       </form>
     )

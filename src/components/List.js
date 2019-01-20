@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
+import './List.scss'
+
 class List extends Component {
   constructor(props) {
     super(props)
@@ -16,22 +18,22 @@ class List extends Component {
   }
 
   handleClick = e => {
-    console.log(e.target.id)
+    this.props.onClick(e.target.id)
   }
 
   handleOutsideClick = e => {
     const node = this.listRef.current
-    const {items} = this.props
+    const {items, onClickOutside} = this.props
 
     if (node && !node.contains(e.target) && items.length) {
-      console.log('close')
+      onClickOutside()
     }
   }
 
   render() {
     const {items} = this.props
     return (
-      <div ref={this.listRef}>
+      <div ref={this.listRef} className="list">
         {items.length ? (
           <ul>
             {items.map(user => (
@@ -54,6 +56,8 @@ List.defaultProps = {
 
 List.propTypes = {
   items: PropTypes.array,
+  onClick: PropTypes.func,
+  onClickOutside: PropTypes.func,
 }
 
 export default List
