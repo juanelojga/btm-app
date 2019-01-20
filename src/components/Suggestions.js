@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
-import './List.scss'
+import './Suggestions.scss'
 
-class List extends Component {
+class Suggestions extends Component {
   constructor(props) {
     super(props)
     this.listRef = React.createRef()
@@ -23,18 +23,18 @@ class List extends Component {
 
   handleOutsideClick = e => {
     const node = this.listRef.current
-    const {items, onClickOutside} = this.props
+    const {items, onClickOutside, isVisible} = this.props
 
-    if (node && !node.contains(e.target) && items.length) {
+    if (node && !node.contains(e.target) && items.length && isVisible) {
       onClickOutside()
     }
   }
 
   render() {
-    const {items} = this.props
+    const {items, isVisible} = this.props
     return (
       <div ref={this.listRef} className="list">
-        {items.length ? (
+        {items.length && isVisible ? (
           <ul>
             {items.map(user => (
               <li key={user.id} id={user.id} onClick={this.handleClick}>
@@ -50,14 +50,16 @@ class List extends Component {
   }
 }
 
-List.defaultProps = {
+Suggestions.defaultProps = {
   items: [],
+  isVisible: false,
 }
 
-List.propTypes = {
+Suggestions.propTypes = {
   items: PropTypes.array,
   onClick: PropTypes.func,
   onClickOutside: PropTypes.func,
+  isVisible: PropTypes.bool,
 }
 
-export default List
+export default Suggestions

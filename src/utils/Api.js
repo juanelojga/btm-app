@@ -17,11 +17,9 @@ const fakeResponse = () => {
 const users = {
   //get: params => axios.get(BASE_URL, {params}).then(getData),
   get: () =>
-    new Promise(resolve =>
-      setTimeout(() => {
-        return resolve(fakeResponse())
-      }, faker.random.number({min: 300, max: 1000})),
-    ).then(getData),
+    new Promise(resolve => setTimeout(() => resolve(fakeResponse()), faker.random.number({min: 300, max: 1000}))).then(
+      getData,
+    ),
 }
 
 export {users}

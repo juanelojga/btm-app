@@ -16,3 +16,39 @@ body {
   background-color: #f1f4f5;
   font-size: 1.2rem;
 }
+
+.form-wrapper {
+  .full-input {
+    display: block;
+    padding: 0.5rem;
+    border: 0.1rem solid #a0a0a1;
+    margin: 2rem 0 0;
+    width: 30rem;
+    background-color: #fff;
+    input {
+      outline: none;
+      border: none;
+      display: block;
+      line-height: 1.2%;
+      font-size: 1.4rem;
+      width: 100%;
+    }
+    label {
+      display: block;
+      font-size: 1rem;
+      color: #a0a0a1;
+    }
+  }
+  .button {
+    background-color: #fff;
+    border: 0.1rem solid #a0a0a1;
+    border-radius: 0.3rem;
+    color: #a0a0a1;
+    padding: 1rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2rem;
+    margin: 20px 0;
+  }
+}

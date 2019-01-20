@@ -1,10 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const ShowSubmittedValue = ({value}) => <div>Submitted Value: {value}</div>
+const ShowResult = ({value}) => <div>Submitted Value: {value}</div>
 
-ShowSubmittedValue.propTypes = {
+ShowResult.defaultProps = {
+  value: '',
+}
+
+ShowResult.propTypes = {
   value: PropTypes.string,
 }
 
-export default ShowSubmittedValue
+export default ShowResult
