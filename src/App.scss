@@ -1,3 +1,4 @@
+@import 'styles/colors';
 *,
 *::after,
 *::before {
@@ -13,7 +14,7 @@ html {
 body {
   box-sizing: border-box;
   padding: 5rem;
-  background-color: #f1f4f5;
+  background-color: $color-light-gray;
   font-size: 1.4rem;
 }
 
@@ -22,14 +23,14 @@ body {
   .form-control {
     display: block;
     padding: 0.5rem;
-    border: 0.1rem solid #a0a0a1;
+    border: 0.1rem solid $color-gray;
     margin: 2rem 0 0;
     width: 30rem;
-    background-color: #fff;
+    background-color: $color-white;
     &.show-focus {
-      border-color: #0098d0;
+      border-color: $color-blue;
       label {
-        color: #0098d0;
+        color: $color-blue;
       }
     }
     input {
@@ -43,23 +44,23 @@ body {
     label {
       display: block;
       font-size: 0.8rem;
-      color: #a0a0a1;
+      color: $color-gray;
     }
   }
   .button {
-    background-color: #0098d0;
-    border: 0.1rem solid #0098d0;
+    background-color: $color-blue;
+    border: 0.1rem solid $color-blue;
     border-radius: 0.3rem;
-    color: #fff;
+    color: $color-white;
     padding: 1rem 2rem;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     margin: 20px 0;
     &:disabled {
-      background-color: #fff;
-      border-color: #a0a0a1;
-      color: #a0a0a1;
+      background-color: $color-white;
+      border-color: $color-gray;
+      color: $color-gray;
     }
   }
 }

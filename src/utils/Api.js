@@ -1,14 +1,11 @@
-//import axios from 'axios'
+import axios from 'axios'
 
-import * as generators from '../test/generators'
-
-//const BASE_URL = 'https://advertiser.bluetrackmedia.com/users.php'
+const BASE_URL = 'http://ec2-34-219-89-185.us-west-2.compute.amazonaws.com/users.php'
 
 const getData = res => res.data
 
 const users = {
-  //get: params => axios.get(BASE_URL, {params}).then(getData),
-  get: () => new Promise(resolve => setTimeout(() => resolve({data: generators.generateUsers()}), 600)).then(getData),
+  get: params => axios.get(BASE_URL, {params}).then(getData),
 }
 
 export {users}
