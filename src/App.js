@@ -4,7 +4,6 @@ import find from 'lodash/find'
 import debounce from 'lodash/debounce'
 import deburr from 'lodash/deburr'
 
-import * as api from './utils/Api'
 import Suggestions from './components/Suggestions'
 import Loading from './components/Loading'
 import ShowResult from './components/ShowResult'
@@ -21,8 +20,6 @@ class App extends Component {
   }
 
   handleChange = e => {
-    this.searchDebounced.cancel()
-
     const {minNumberOfChars} = this.props
     const value = e.target.value
 
@@ -53,7 +50,7 @@ class App extends Component {
 
   search = q => {
     this.setState({isLoading: true, users: []}, () => {
-      api.users.get({q}).then(users => this.setState({users, isLoading: false}))
+      this.props.api.users.get({q}).then(users => this.setState({users, isLoading: false}))
     })
   }
 
@@ -88,6 +85,7 @@ App.defaultProps = {
 
 App.propTypes = {
   minNumberOfChars: PropTypes.number,
+  api: PropTypes.object,
 }
 
 export default App
