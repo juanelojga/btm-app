@@ -54,11 +54,17 @@ class App extends Component {
 
   search = q => {
     this.setState({isLoading: true, showSuggestions: true}, () => {
-      this.props.api.users.get({q}).then(users => {
-        const {name} = this.state
-        const showSuggestions = name.length >= this.props.minNumberOfChars
-        this.setState({users, showSuggestions, isLoading: false})
-      })
+      this.props.api.users
+        .get({q})
+        .then(users => {
+          const {name} = this.state
+          const showSuggestions = name.length >= this.props.minNumberOfChars
+          this.setState({users, showSuggestions, isLoading: false})
+        })
+        .catch(error => {
+          console.error(error)
+          this.setState({showSuggestions: false, isLoading: false})
+        })
     })
   }
 
