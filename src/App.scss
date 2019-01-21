@@ -14,7 +14,7 @@ body {
   box-sizing: border-box;
   padding: 5rem;
   background-color: #f1f4f5;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .form-wrapper {
@@ -37,8 +37,8 @@ body {
       border: none;
       display: block;
       line-height: 1.2%;
-      font-size: 1.4rem;
       width: 100%;
+      padding: 0.5rem;
     }
     label {
       display: block;
@@ -55,7 +55,6 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 1.2rem;
     margin: 20px 0;
     &:disabled {
       background-color: #fff;

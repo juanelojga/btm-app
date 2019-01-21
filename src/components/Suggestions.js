@@ -25,7 +25,6 @@ class Suggestions extends Component {
 
   handleOutsideClick = e => {
     const node = this.listRef.current
-
     if (node && !node.contains(e.target)) {
       this.props.onClickOutside()
     }

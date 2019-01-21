@@ -2,18 +2,18 @@
 
 exports[`snapshot 1`] = `
 <div>
-  <div>
+  <p>
     Submitted Value: 
     Juan Almeida
-  </div>
+  </p>
 </div>
 `;
 
 exports[`snapshot empty value 1`] = `
 <div>
-  <div>
+  <p>
     Submitted Value: 
     
-  </div>
+  </p>
 </div>
 `;

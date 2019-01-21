@@ -24,9 +24,9 @@ exports[`snapshot 1`] = `
       value="Submit"
     />
   </form>
-  <div>
+  <p>
     Submitted Value: 
     
-  </div>
+  </p>
 </div>
 `;

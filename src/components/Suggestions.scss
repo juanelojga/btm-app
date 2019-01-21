@@ -4,6 +4,8 @@
   top: 3.5rem;
   border: 0.1rem solid #a0a0a1;
   background-color: rgba(#fff, 0.9);
+  max-height: 15rem;
+  overflow: auto;
   .list {
     list-style-type: none;
     margin: 0;

@@ -19,7 +19,7 @@ class App extends Component {
 
   handleChange = e => {
     const {minNumberOfChars} = this.props
-    const value = e.target.value
+    const {value} = e.target
 
     this.setState({name: value}, () => {
       if (value.length >= minNumberOfChars) {
