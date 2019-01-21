@@ -22,3 +22,29 @@ exports[`snapshot 1`] = `
   </div>
 </div>
 `;
+
+exports[`snapshot loading 1`] = `
+<div>
+  <div
+    class="suggestion"
+  >
+    <div
+      class="loading show"
+    >
+      <div
+        class="css-0"
+      >
+        <div
+          class="css-1hpnt32-style"
+        />
+        <div
+          class="css-vz2hb5-style"
+        />
+        <div
+          class="css-1hpnt32-style"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -43,3 +43,10 @@ test('snapshot', () => {
   const {container} = render(<Suggestions items={users} isLoading={false} />)
   expect(container).toMatchSnapshot()
 })
+
+test('snapshot loading', () => {
+  const users = []
+
+  const {container} = render(<Suggestions items={users} isLoading={true} />)
+  expect(container).toMatchSnapshot()
+})
