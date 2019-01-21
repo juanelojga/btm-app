@@ -3,9 +3,11 @@
 exports[`snapshot 1`] = `
 <div>
   <div
-    class="list"
+    class="suggestion"
   >
-    <ul>
+    <ul
+      class="list"
+    >
       <li
         id="1"
       >

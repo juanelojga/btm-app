@@ -2,10 +2,8 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import find from 'lodash/find'
 import debounce from 'lodash/debounce'
-import deburr from 'lodash/deburr'
 
 import Suggestions from './components/Suggestions'
-import Loading from './components/Loading'
 import ShowResult from './components/ShowResult'
 
 import './App.scss'
@@ -15,7 +13,7 @@ const DEBOUNCE_DELAY = 600
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {name: '', users: [], isLoading: false, selectedName: '', isVisibleSuggestions: false}
+    this.state = {name: '', users: [], selectedName: '', showSuggestions: false, isLoading: false, isFocussed: false}
     this.searchDebounced = debounce(this.search, DEBOUNCE_DELAY)
   }
 
@@ -25,7 +23,7 @@ class App extends Component {
 
     this.setState({name: value}, () => {
       if (value.length >= minNumberOfChars) {
-        this.searchDebounced(deburr(value))
+        this.searchDebounced(value)
       }
     })
   }
@@ -39,38 +37,61 @@ class App extends Component {
   handleClick = value => {
     const {users} = this.state
     const user = find(users, ['id', value])
-    this.setState({name: user.name, isVisibleSuggestions: false})
+    this.setState({name: user.name, showSuggestions: false})
   }
 
   handleClickOutside = () => {
-    this.setState({isVisibleSuggestions: false})
+    this.setState({showSuggestions: false})
   }
 
-  handleFocus = () => this.setState({isVisibleSuggestions: true})
+  handleOnFocus = () => {
+    this.setState({isFocussed: true})
+  }
+
+  handleOnBlur = () => {
+    this.setState({isFocussed: false})
+  }
 
   search = q => {
-    this.setState({isLoading: true, users: []}, () => {
-      this.props.api.users.get({q}).then(users => this.setState({users, isLoading: false}))
+    this.setState({isLoading: true, showSuggestions: true}, () => {
+      this.props.api.users.get({q}).then(users => {
+        const {name} = this.state
+        const showSuggestions = name.length >= this.props.minNumberOfChars
+        this.setState({users, showSuggestions, isLoading: false})
+      })
     })
   }
 
   render() {
+    const inputClassName = ['form-control']
+    if (this.state.isFocussed) inputClassName.push('show-focus')
+
     return (
       <>
         <form onSubmit={this.handleSubmit} className="form-wrapper">
-          <div className="full-input">
+          <div className={inputClassName.join(' ')}>
             <label>
               Name
-              <input type="text" value={this.state.name} onChange={this.handleChange} onFocus={this.handleFocus} />
+              <input
+                type="text"
+                value={this.state.name}
+                onChange={this.handleChange}
+                onFocus={this.handleOnFocus}
+                onBlur={this.handleOnBlur}
+              />
             </label>
           </div>
-          <Loading isLoading={this.state.isLoading} />
-          <Suggestions
-            items={this.state.users}
-            onClick={this.handleClick}
-            onClickOutside={this.handleClickOutside}
-            isVisible={this.state.isVisibleSuggestions}
-          />
+          {this.state.showSuggestions ? (
+            <Suggestions
+              items={this.state.users}
+              onClick={this.handleClick}
+              onClickOutside={this.handleClickOutside}
+              isLoading={this.state.isLoading}
+            />
+          ) : (
+            ''
+          )}
+
           <input type="submit" value="Submit" className="button" disabled={!this.state.name} />
         </form>
         <ShowResult value={this.state.selectedName} />

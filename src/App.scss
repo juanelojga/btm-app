@@ -18,13 +18,20 @@ body {
 }
 
 .form-wrapper {
-  .full-input {
+  position: relative;
+  .form-control {
     display: block;
     padding: 0.5rem;
     border: 0.1rem solid #a0a0a1;
     margin: 2rem 0 0;
     width: 30rem;
     background-color: #fff;
+    &.show-focus {
+      border-color: #0098d0;
+      label {
+        color: #0098d0;
+      }
+    }
     input {
       outline: none;
       border: none;
@@ -40,15 +47,20 @@ body {
     }
   }
   .button {
-    background-color: #fff;
-    border: 0.1rem solid #a0a0a1;
+    background-color: #0098d0;
+    border: 0.1rem solid #0098d0;
     border-radius: 0.3rem;
-    color: #a0a0a1;
+    color: #fff;
     padding: 1rem 2rem;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 1.2rem;
     margin: 20px 0;
+    &:disabled {
+      background-color: #fff;
+      border-color: #a0a0a1;
+      color: #a0a0a1;
+    }
   }
 }

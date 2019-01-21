@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
+import Loading from './Loading'
+
 import './Suggestions.scss'
 
 class Suggestions extends Component {
@@ -23,19 +25,20 @@ class Suggestions extends Component {
 
   handleOutsideClick = e => {
     const node = this.listRef.current
-    const {items, onClickOutside, isVisible} = this.props
 
-    if (node && !node.contains(e.target) && items.length && isVisible) {
-      onClickOutside()
+    if (node && !node.contains(e.target)) {
+      this.props.onClickOutside()
     }
   }
 
   render() {
-    const {items, isVisible} = this.props
+    const {items, isLoading, onClickOutside} = this.props
     return (
-      <div ref={this.listRef} className="list">
-        {items.length && isVisible ? (
-          <ul>
+      <div ref={this.listRef} className="suggestion">
+        {isLoading ? (
+          <Loading isLoading={isLoading} />
+        ) : items.length ? (
+          <ul className="list">
             {items.map(user => (
               <li key={user.id} id={user.id} onClick={this.handleClick}>
                 {user.name}
@@ -43,7 +46,9 @@ class Suggestions extends Component {
             ))}
           </ul>
         ) : (
-          ''
+          <p className="text" onClick={onClickOutside}>
+            No results were found...
+          </p>
         )}
       </div>
     )
@@ -52,14 +57,14 @@ class Suggestions extends Component {
 
 Suggestions.defaultProps = {
   items: [],
-  isVisible: false,
+  isLoading: false,
 }
 
 Suggestions.propTypes = {
   items: PropTypes.array,
   onClick: PropTypes.func,
   onClickOutside: PropTypes.func,
-  isVisible: PropTypes.bool,
+  isLoading: PropTypes.bool,
 }
 
 export default Suggestions
